@@ -5,13 +5,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
+        <title>Login</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <p>This is the homepage!</p>
-        <a href="user/login" >Login</a>  <!-- 'login' is the http path specified in @RequestMapping(value="/login") -->
-        <a href="user/signup" >Sign up</a>
-        
+        <h1>Congratulations, you've been signed up successfully!</h1>
     </body>
 </html>
