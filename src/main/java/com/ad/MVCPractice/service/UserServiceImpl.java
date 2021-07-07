@@ -10,35 +10,35 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDaoImpl userDao;
+    private UserDaoImpl userDaoImpl;
 
     @Override
     public Integer insert(User user) {
-        return this.userDao.insert(user);
+        return this.userDaoImpl.insert(user);
     }
 
     @Override
     public User getById(Integer id) {
-        return this.userDao.getById(id);
+        return this.userDaoImpl.getById(id);
     }
 
     @Override
     public User getByUsername(String username) {
-        return this.userDao.getByUsername(username);
+        return this.userDaoImpl.getByUsername(username);
     }
 
     @Override
     public Set<User> getAll() {
-        return this.userDao.getAll();
+        return this.userDaoImpl.getAll();
     }
 
     @Override
     public Boolean update(User user) {
-        return this.userDao.update(user);
+        return this.userDaoImpl.update(user);
     }
 
     @Override
     public Boolean delete(User user) {
-        return this.userDao.delete(user);
+        return this.userDaoImpl.delete(user);
     }
 }

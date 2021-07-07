@@ -10,7 +10,6 @@ import com.ad.MVCPractice.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	private UserServiceImpl userService;
+	private UserServiceImpl userServiceImpl;
 
 	@RequestMapping(value = "/login")
 	public String login(HttpServletResponse response) {
@@ -44,7 +43,7 @@ public class UserController {
 		user.setUsername(username);
 		user.setPassword(password);
 
-		Integer id = this.userService.insert(user);
+		Integer id = this.userServiceImpl.insert(user);
 		System.out.println("id:" + id);
 		System.out.println("user.id" + user.getId());
 
