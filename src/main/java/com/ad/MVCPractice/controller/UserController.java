@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,24 +25,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String registerconfirmation(HttpServletRequest request, Model model) throws IOException {
-		// the name of the view
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		model.addAttribute("firstName", firstName); 
-		model.addAttribute("lastName", lastName); 
-		model.addAttribute("username", username); 
-		model.addAttribute("passowrd", password);
-		
-		System.out.println(firstName);
+	public String processSignup(HttpServletRequest request, Model model) throws IOException {
+		model.addAttribute("firstName", request.getParameter("firstName"));
+		model.addAttribute("lastName", request.getParameter("lastName"));
+		model.addAttribute("username", request.getParameter("username"));
+		model.addAttribute("password", request.getParameter("password"));
 		System.out.println(model);
-		
-		// add user to database 
-		
-		return "signup-result"; 
+
+		// add user to database
+
+		return "signup-result";
 	}
+
+//    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+//    public String processSignup(@ModelAttribute("user") User user, Model model) {  // The 'User' class must be @Controller
+//        model.addAttribute("user", user);
+//        System.out.println(model);
+//        System.out.println(user);
+//        return "signup-result";
+//    }
 
 }
