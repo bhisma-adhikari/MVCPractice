@@ -8,6 +8,6 @@
         <title>Login</title>
     </head>
     <body>
-        <h1>Congratulations, you've been signed up successfully!</h1>
+        <h1>Congratulations  ${user.firstName}, you've been signed up successfully!</h1>
     </body>
 </html>

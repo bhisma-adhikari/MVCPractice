@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-@Repository("us")
+@Repository
 public class UserDaoImpl implements UserDao{
     @Autowired
     private SessionFactory sessionFactory;

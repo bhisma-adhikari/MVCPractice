@@ -5,6 +5,9 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ad.MVCPractice.model.User;
+import com.ad.MVCPractice.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	@Autowired
+	private UserServiceImpl userService;
+
 	@RequestMapping(value = "/login")
 	public String login(HttpServletResponse response) {
 		return "login"; // name of .jsp view
@@ -26,13 +32,24 @@ public class UserController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String processSignup(HttpServletRequest request, Model model) throws IOException {
-		model.addAttribute("firstName", request.getParameter("firstName"));
-		model.addAttribute("lastName", request.getParameter("lastName"));
-		model.addAttribute("username", request.getParameter("username"));
-		model.addAttribute("password", request.getParameter("password"));
-		System.out.println(model);
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 
 		// add user to database
+		User user = new User();
+		user.setUsername(firstName);
+		user.setLastName(lastName);
+		user.setUsername(username);
+		user.setPassword(password);
+
+		Integer id = this.userService.insert(user);
+		System.out.println("id:" + id);
+		System.out.println("user.id" + user.getId());
+
+
+		model.addAttribute("user", user);
 
 		return "signup-result";
 	}
