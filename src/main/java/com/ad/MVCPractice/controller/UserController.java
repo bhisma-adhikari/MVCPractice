@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ad.MVCPractice.model.User;
+import com.ad.MVCPractice.service.UserService;
 import com.ad.MVCPractice.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 
 	@RequestMapping(value = "/login")
 	public String login(HttpServletResponse response) {
@@ -38,18 +39,20 @@ public class UserController {
 
 		// add user to database
 		User user = new User();
-		user.setUsername(firstName);
+		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setUsername(username);
 		user.setPassword(password);
 
-		Integer id = this.userServiceImpl.insert(user);
-		System.out.println("id:" + id);
-		System.out.println("user.id" + user.getId());
+		System.out.println("User before inserting to db: " + user);
 
+		Integer id = this.userService.insert(user);
+		System.out.println("id: " + id);
+		model.addAttribute("success", id != null ? true : false);
 
 		model.addAttribute("user", user);
 
+		System.out.println("User after inserting to db: " + user);
 		return "signup-result";
 	}
 

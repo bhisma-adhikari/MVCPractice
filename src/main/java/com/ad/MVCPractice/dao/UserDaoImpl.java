@@ -16,17 +16,17 @@ public class UserDaoImpl implements UserDao{
     @Override
     public Integer insert(User user) {
         Session session = this.sessionFactory.getCurrentSession();
-        Integer id = null;
+        Integer id  = null;
         try {
-            session.beginTransaction();
-            // save user
             id = (Integer) session.save(user);
-            session.getTransaction().commit();
         } catch (Exception e) {
+            System.out.println("---------------------");
+            System.out.println(e.toString());
+            System.out.println("=====================");
             e.printStackTrace();
-        } finally {
-            session.close();
+            System.out.println("---------------------");
         }
+        System.out.println("returning id from UserDao");
         return id;
     }
 

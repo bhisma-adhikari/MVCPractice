@@ -22,15 +22,15 @@
 
     <!-- DataSource -->
     <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-        <property name="driverClassName" value="${database.driver}"></property>
-        <property name="url" value="${database.url}"></property>
-        <property name="username" value="${database.user}"></property>
-        <property name="password" value="${database.password}"></property>
+        <property name="driverClassName" value="${database.driver}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.user}"/>
+        <property name="password" value="${database.password}"/>
     </bean>
 
     <!-- Hibernate SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
@@ -39,7 +39,7 @@
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
             </props>
         </property>
-        <property name="packagesToScan" value="com.ad.MVCPractice.model"></property>
+        <property name="packagesToScan" value="com.ad.MVCPractice.model"/>
     </bean>
 
     <!-- Transaction -->
@@ -48,4 +48,5 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager" />
+
 </beans>
